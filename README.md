@@ -1,4 +1,4 @@
-# Request the monitoring parameters by Dixell XWEB300D
+# Requesting monitoring parameters from Dixell XWEB300D
 
 In version 1 it is using capture packets. For this I'm using sniffing program **tshark** and I capture the packages send by 
 server to the client.  

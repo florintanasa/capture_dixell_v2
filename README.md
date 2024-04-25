@@ -105,3 +105,27 @@ apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cc8
 apr 25 14:44:50 florin-laptop capture_dixell.sh[65296]: Inserted into cr9
 
 ```
+If exist problems with network after the service was started we found the message:  
+```shell
+● capture-dixell.service - Run the script to request data from Dixell XWEB300D
+     Loaded: loaded (/etc/systemd/system/capture-dixell.service; disabled; vendor preset: enabled)
+     Active: active (exited) since Thu 2024-04-25 14:13:55 EEST; 1h 18min ago
+    Process: 54429 ExecStart=/usr/local/bin/capture_dixell.sh (code=exited, status=0/SUCCESS)
+   Main PID: 54429 (code=exited, status=0/SUCCESS)
+        CPU: 2min 32.979s
+
+apr 25 15:27:07 florin-laptop capture_dixell.sh[79959]: Inserted into cr9
+apr 25 15:27:18 florin-laptop capture_dixell.sh[80020]: Inserted into cr2
+apr 25 15:27:18 florin-laptop capture_dixell.sh[80020]: Inserted into cr3
+apr 25 15:27:18 florin-laptop capture_dixell.sh[80020]: Inserted into cr4
+apr 25 15:27:18 florin-laptop capture_dixell.sh[80020]: Inserted into cc5
+apr 25 15:27:18 florin-laptop capture_dixell.sh[80020]: Inserted into cc6
+apr 25 15:27:18 florin-laptop capture_dixell.sh[80020]: Inserted into cc7
+apr 25 15:27:18 florin-laptop capture_dixell.sh[80020]: Inserted into cc8
+apr 25 15:27:18 florin-laptop capture_dixell.sh[80020]: Inserted into cr9
+apr 25 15:27:29 florin-laptop capture_dixell.sh[54429]: Check where is the problems for route at Dixell XWEB300D - IP 192.168.0.15
+```
+and is necessary to check the route and if IP is up, and then we restart the service:  
+```shell
+systemctl restart capture-dixell.service
+```

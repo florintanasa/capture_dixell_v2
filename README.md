@@ -40,5 +40,68 @@ so it's work. We can construct a script to insert these parameters into tables f
 
 ![Screen capture with the script run and the data from tables](./img/script_run.png)  
 
-The loop message it's for debug only, later I added a logging file for errors and maybe for other useful messages.
+The loop message it's for debug only, later I added a logging file for errors and maybe for other useful messages.  
 
+## Install
+Download the files:  
+```shell
+wget https://raw.githubusercontent.com/florintanasa/capture_dixell_v2/master/capture_dixell.sh
+wget https://raw.githubusercontent.com/florintanasa/capture_dixell_v2/master/variable_command
+wget https://raw.githubusercontent.com/florintanasa/capture_dixell_v2/master/capture-dixell.service
+```
+### Run locally
+To run from current directory is necessary to modify the line from where is reading variable_command:  
+
+```shell
+while IFS="|" read -r RUN TIME IP < /usr/local/etc/variable_command; do
+```
+to  
+```shell
+while IFS="|" read -r RUN TIME IP < variable_command; do
+```
+
+### Run like service
+
+After you downloading move files in their locations (work by root or with sudo command):
+```shell
+mv capture_dixell.sh /usr/local/bin/
+mv variable_command /usr/local/etc/
+mv capture-dixell.service /etc/systemd/system/
+```
+then reload systemd to know by capture-dixell.service:
+```shell
+systemctl daemon-reload
+```
+the start the service:
+```shell
+systemctl start capture-dixell.service
+```
+check if the service start and run ok:
+```shell
+systemctl status capture-dixell.service
+```  
+if everything is ok we see a message like:  
+```shell
+● capture-dixell.service - Run the script to request data from Dixell XWEB300D
+     Loaded: loaded (/etc/systemd/system/capture-dixell.service; disabled; vendor preset: enabled)
+     Active: active (running) since Thu 2024-04-25 14:13:55 EEST; 31min ago
+   Main PID: 54429 (capture_dixell.)
+      Tasks: 2 (limit: 18772)
+     Memory: 1.2M
+        CPU: 1min 5.518s
+     CGroup: /system.slice/capture-dixell.service
+             ├─54429 /bin/bash /usr/local/bin/capture_dixell.sh
+             └─65319 sleep 10
+
+apr 25 14:44:38 florin-laptop capture_dixell.sh[65233]: Inserted into cc8
+apr 25 14:44:38 florin-laptop capture_dixell.sh[65233]: Inserted into cr9
+apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cr2
+apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cr3
+apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cr4
+apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cc5
+apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cc6
+apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cc7
+apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cc8
+apr 25 14:44:50 florin-laptop capture_dixell.sh[65296]: Inserted into cr9
+
+```

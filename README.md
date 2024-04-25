@@ -129,3 +129,8 @@ and is necessary to check the route and if IP is up, and then we restart the ser
 ```shell
 systemctl restart capture-dixell.service
 ```
+Later I have in plan to add an alert for this situation.
+
+In next image we see the data for XH260L controller in the table.  
+  
+![Data in table for XH260L controller](./img/script_run_2.png)

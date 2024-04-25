@@ -8,7 +8,7 @@ PSQL="psql -X --username=monitoruser --dbname=monitor --no-align --tuples-only -
 # run infinite loop may be I need later, the script can be stopped in next loop
 while true ; do
   # read some variables from file variable_command, example 'start|5|192.168.1.15'
-  # was written with command: echo "stop|5|192.168.1.15" > variable_command
+  # was written with command: echo "start|5|192.168.1.15" > variable_command
   # where with 'stop' word you can stop the script
   # where with 'start' word you can run the script
   # next after first delimiter '|' it's a number for how many seconds to wait,

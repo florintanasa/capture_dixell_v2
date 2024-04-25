@@ -1,12 +1,12 @@
-# Request the monitoring parameters by Dixell XWEB300D
+# Requesting monitoring parameters from Dixell XWEB300D
 
-In version 1 it is using capture packets. For this I'm using sniffing program **tshark** and I capture the packages send by 
+In [version 1](https://github.com/florintanasa/capture_dixell_v1) I used the capture packets technique. For this I'm using a sniffing program **tshark** and I capture the packages sent by
 server to the client.  
 
-In version 2 I used **curl** command to send the request data to server. For this also I'm using **tshark** to catch the POST data
+In version 2 I used the **curl** command to send the request data to the server. For this also I'm using **tshark** to catch the POST data
 to the server.
 For this we need to catch the exact url address, cookie, content type and the data sent to the server with POST command by the client.  
-  
+ 
 Command used, in console terminal, to capture the package was next:  
 
 ```shell
@@ -40,4 +40,5 @@ so it's work. We can construct a script to insert these parameters into tables f
 
 ![Screen capture with the script run and the data from tables](./img/script_run.png)  
 
-The loop message it's for debug only, later I added a logging file for errors and may be for another usefully messages.
+The loop message it's for debug only, later I added a logging file for errors and maybe for other useful messages.
+

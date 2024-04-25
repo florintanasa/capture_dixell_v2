@@ -1,0 +1,22 @@
+# cp this file in /etc/systemd/system/ directory
+# after that run systemctl daemon-reload
+# then start with systemctl start capture-dixell.service
+[Unit]
+# description
+Description=Run the script to request data from Dixell XWEB300D
+# start after network and postgresql start
+After=network.target postgresql.service
+# stop the service if network and postgresql services was stopped
+Requires=network.target postgresql.service
+
+[Service]
+# type of service
+Type=simple
+# remain active, so ii's necessary to stop before to start again
+RemainAfterExit=yes
+# script of file started
+ExecStart=/usr/local/bin/capture_dixell.sh
+TimeoutSec=0
+
+[Install]
+WantedBy=default.target

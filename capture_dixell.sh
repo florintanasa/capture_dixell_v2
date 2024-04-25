@@ -14,12 +14,23 @@ while true ; do
   # next after first delimiter '|' it's a number for how many seconds to wait,
   # a very small number can flood the device, so for me 10 seconds is ok,
   # next after second delimiter '|' it's ip address for Dixell XWEB300D device
-    while IFS="|" read -r RUN TIME IP < variable_command; do
-      # check if stop and exit from the loop
-        if [ "$RUN" = 'stop' ]; then
-            exit 1;
-        # but if exist 'start' word in the first line then run command
-        elif [ "$RUN" = 'start' ]; then
+    while IFS="|" read -r RUN TIME IP < /usr/local/etc/variable_command; do
+      # check if IP exist in network, if not exist exit from loops and inform
+      if ! fping -c1 -t300 "$IP" 2>/dev/null 1>/dev/null; then
+          echo "Check where is the problems for rote at Dixell XWEB300D - IP $IP"
+          break 2
+      fi
+      # check if PostgreSQL is running, if not run exit from loops and inform
+      if ! pgrep -fa -- -D | grep postgres 2>/dev/null 1>/dev/null; then
+          echo "Check if PostgreSQL is running"
+          break 2
+      fi
+      # check if word 'stop' is written on file variable_command and exit from the loops
+      if [ "$RUN" = 'stop' ]; then
+            echo "Word 'stop' was written in the file /usr/local/etc/variable_command"
+            break 2
+      # but if exist 'start' word in the first line then run command
+      elif [ "$RUN" = 'start' ]; then
           # next three lines is used for debug only
           #HOUR=$(date +%H:%M:%S)
           #P=$(("$P"+1))
@@ -100,8 +111,8 @@ while true ; do
           sleep "$TIME"
           # exit from the loop if the first word is not 'start' or 'stop'
           else
-            echo "The file named variable_command is necessary to have one line with 'start|3|192.168.0.15'"
-            exit 1
-            fi
+            echo "The file /usr/local/etc/variable_command is necessary to have one line, by example 'start|10|192.168.0.15'"
+            break 2
+        fi
     done
 done

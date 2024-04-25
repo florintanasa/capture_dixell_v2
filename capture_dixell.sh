@@ -74,8 +74,10 @@ while true ; do
                   CODE_10=$VAL_17
                   # Run sql insert command
                   INSERT_CC_RESULT=$($PSQL "INSERT INTO cc$ADDRESS(datetime,address,code_1,code_2,probe_1,probe_2,probe_3,probe_r,setpoint_r,setpoint,fan_out,compressor_out,gdi,on_status,defrost_status,code_8,code_9,code_10) VALUES('$DATETIME','$ADDRESS','$CODE_1','$CODE_2','$PROBE_1','$PROBE_2','$PROBE_3','$PROBE_R','$SETPOINT_R','$SETPOINT','$FAN_OUT','$COMPRESSOR_OUT','$GDI','$ON_STATUS','$DEFROST_STATUS','$CODE_8','$CODE_9','$CODE_10')")
-                  # Print message 'INSERT 0 1' for success insert. Later I used result variables for an if
-                  echo "$INSERT_CC_RESULT"
+                  # Print messages for success insert.
+                  if [[ $INSERT_CC_RESULT == 'INSERT 0 1' ]]; then
+                    echo "Inserted into cc$ADDRESS"
+                  fi
                 fi
                 # At address 2, 3, 4 and 9 I have XH260L controller connected at XWeb300D using RS485 line and I prepare variable for this tables (cr - refrigerators chambers)
                 if [ "$ADDRESS" = 2 ] || [ "$ADDRESS" = 3 ] || [ "$ADDRESS" = 4 ] || [ "$ADDRESS" = 9 ]; then
@@ -103,8 +105,10 @@ while true ; do
                   CODE_13=$VAL_19
                   # Run sql insert command
                   INSERT_CR_RESULT=$($PSQL "INSERT INTO cr$ADDRESS(datetime,address,code_1,code_2,probe_1,probe_2,probe_3,temp_set,humid_set,compressor_out,heater_out,fan_out,humidifier_out,defrost_out,light_out,gdi,on_status,defrost_status,keyboard_status,code_13) VALUES('$DATETIME','$ADDRESS','$CODE_1','$CODE_2','$PROBE_1','$PROBE_2','$PROBE_3','$TEMP_SET','$HUMID_SET','$COMPRESSOR_OUT','$HEATER_OUT','$FAN_OUT','$HUMIDIFIER_OUT','$DEFROST_OUT','$LIGHT_OUT','$GDI','$ON_STATUS','$DEFROST_STATUS','$KEYBOARD_STATUS','$CODE_13')")
-                  # Print message 'INSERT 0 1' for success insert. Later I used result variables for an if
-                  echo "$INSERT_CR_RESULT"
+                  # Print messages for success insert.
+                  if [[ $INSERT_CR_RESULT == 'INSERT 0 1' ]]; then
+                  echo "Inserted into cr$ADDRESS"
+                  fi
                 fi
             done
           # wait some (TIME variable) seconds

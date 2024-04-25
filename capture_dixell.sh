@@ -17,7 +17,7 @@ while true ; do
     while IFS="|" read -r RUN TIME IP < /usr/local/etc/variable_command; do
       # check if IP exist in network, if not exist exit from loops and inform
       if ! fping -c1 -t300 "$IP" 2>/dev/null 1>/dev/null; then
-          echo "Check where is the problems for rote at Dixell XWEB300D - IP $IP"
+          echo "Check where is the problems for route at Dixell XWEB300D - IP $IP"
           break 2
       fi
       # check if PostgreSQL is running, if not run exit from loops and inform

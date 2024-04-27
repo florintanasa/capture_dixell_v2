@@ -68,11 +68,11 @@ mv capture_dixell.sh /usr/local/bin/
 mv variable_command /usr/local/etc/
 mv capture-dixell.service /etc/systemd/system/
 ```
-then reload systemd to know by capture-dixell.service:
+after that we reload systemd daemon to know by capture-dixell.service:
 ```shell
 systemctl daemon-reload
 ```
-the start the service:
+then start the service:
 ```shell
 systemctl start capture-dixell.service
 ```

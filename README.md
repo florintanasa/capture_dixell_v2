@@ -152,7 +152,7 @@ to see continues the last 8 lines.
 
 ![Syslog](./img/syslog.png)  
 
-How saw with the time series data from TimescaleDB we can construct some graphs and alerts in Grafana:  
+Next with the time series data from TimescaleDB we can construct some graphs and alerts in [Grafana](https://grafana.com/):  
   
 For XH260L controller:  
 

@@ -134,3 +134,30 @@ Later I have in plan to add an alert for this situation.
 In next image we see the data for XH260L controller in the table.  
   
 ![Data in table for XH260L controller](./img/script_run_2.png)
+
+After we install the bash script like service we can saw the message in syslog. For this is necessary to install an syslog daemon, 
+in ubuntu I installed rsyslog daemon with apt command:  
+```shell
+apt install rsyslog
+```
+and then I stated the service with command:  
+```shell
+systemctl start rsyslog
+```
+We can see the message in terminal console or with another gui utilities:   
+```shell
+tail -n 8 -F /var/log/syslog | grep capture_dixell.sh
+```
+to see continues the last 8 lines.  
+
+![Syslog](./img/syslog.png)  
+
+How saw with the time series data from TimescaleDB we can construct some graphs and alerts in Grafana:  
+  
+For XH260L controller:  
+
+![Grafana_1](./img/Grafana_1.png)
+
+For XR60CX controller:  
+
+![Grafana_1](./img/Grafana_2.png)

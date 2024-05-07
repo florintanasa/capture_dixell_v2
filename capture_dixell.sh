@@ -37,7 +37,7 @@ while true ; do
           #echo "$HOUR" "Loop no. $P"
 
           # Put current date as dd-mm-YYYY HH:MM:SS in $DATETIME, in sql insert can be used also now() for datetime
-          DATETIME=$(date '+%d-%m-%Y %H:%M:%S')
+          #DATETIME=$(date '+%d-%m-%Y %H:%M:%S')
           curl -s -X POST http://"$IP"/cgi-bin/runtime.cgi -H "Content-Type: application/x-www-form-urlencoded" \
           -b "user=Florin" \
           -d "NDVC=8&DEV_0=1|2|2857|3857|4857|8857|9857|18857|19857|20857|21857|24857|25857|17857|1|29857|30857|
@@ -73,7 +73,7 @@ while true ; do
                   # Define variables with string (this string it's for error codes)
                   CODE_10=$VAL_17
                   # Run sql insert command
-                  INSERT_CC_RESULT=$($PSQL "INSERT INTO cc$ADDRESS(datetime,address,code_1,code_2,probe_1,probe_2,probe_3,probe_r,setpoint_r,setpoint,fan_out,compressor_out,gdi,on_status,defrost_status,code_8,code_9,code_10) VALUES('$DATETIME','$ADDRESS','$CODE_1','$CODE_2','$PROBE_1','$PROBE_2','$PROBE_3','$PROBE_R','$SETPOINT_R','$SETPOINT','$FAN_OUT','$COMPRESSOR_OUT','$GDI','$ON_STATUS','$DEFROST_STATUS','$CODE_8','$CODE_9','$CODE_10')")
+                  INSERT_CC_RESULT=$($PSQL "INSERT INTO cc$ADDRESS(datetime,address,code_1,code_2,probe_1,probe_2,probe_3,probe_r,setpoint_r,setpoint,fan_out,compressor_out,gdi,on_status,defrost_status,code_8,code_9,code_10) VALUES(now(),'$ADDRESS','$CODE_1','$CODE_2','$PROBE_1','$PROBE_2','$PROBE_3','$PROBE_R','$SETPOINT_R','$SETPOINT','$FAN_OUT','$COMPRESSOR_OUT','$GDI','$ON_STATUS','$DEFROST_STATUS','$CODE_8','$CODE_9','$CODE_10')")
                   # Print messages for success insert.
                   if [[ $INSERT_CC_RESULT == 'INSERT 0 1' ]]; then
                     echo "Inserted into cc$ADDRESS"
@@ -104,7 +104,7 @@ while true ; do
                   # Define variables with string (this string it's for error codes)
                   CODE_13=$VAL_19
                   # Run sql insert command
-                  INSERT_CR_RESULT=$($PSQL "INSERT INTO cr$ADDRESS(datetime,address,code_1,code_2,probe_1,probe_2,probe_3,temp_set,humid_set,compressor_out,heater_out,fan_out,humidifier_out,defrost_out,light_out,gdi,on_status,defrost_status,keyboard_status,code_13) VALUES('$DATETIME','$ADDRESS','$CODE_1','$CODE_2','$PROBE_1','$PROBE_2','$PROBE_3','$TEMP_SET','$HUMID_SET','$COMPRESSOR_OUT','$HEATER_OUT','$FAN_OUT','$HUMIDIFIER_OUT','$DEFROST_OUT','$LIGHT_OUT','$GDI','$ON_STATUS','$DEFROST_STATUS','$KEYBOARD_STATUS','$CODE_13')")
+                  INSERT_CR_RESULT=$($PSQL "INSERT INTO cr$ADDRESS(datetime,address,code_1,code_2,probe_1,probe_2,probe_3,temp_set,humid_set,compressor_out,heater_out,fan_out,humidifier_out,defrost_out,light_out,gdi,on_status,defrost_status,keyboard_status,code_13) VALUES(now(),'$ADDRESS','$CODE_1','$CODE_2','$PROBE_1','$PROBE_2','$PROBE_3','$TEMP_SET','$HUMID_SET','$COMPRESSOR_OUT','$HEATER_OUT','$FAN_OUT','$HUMIDIFIER_OUT','$DEFROST_OUT','$LIGHT_OUT','$GDI','$ON_STATUS','$DEFROST_STATUS','$KEYBOARD_STATUS','$CODE_13')")
                   # Print messages for success insert.
                   if [[ $INSERT_CR_RESULT == 'INSERT 0 1' ]]; then
                   echo "Inserted into cr$ADDRESS"

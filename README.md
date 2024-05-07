@@ -160,4 +160,6 @@ For XH260L controller:
 
 For XR60CX controller:  
 
-![Grafana_1](./img/Grafana_2.png)
+![Grafana_2](./img/Grafana_2.png)  
+and  
+![Grafana_3](./img/Grafana_3.png)

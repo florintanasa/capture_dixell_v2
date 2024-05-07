@@ -105,7 +105,7 @@ apr 25 14:44:49 florin-laptop capture_dixell.sh[65296]: Inserted into cc8
 apr 25 14:44:50 florin-laptop capture_dixell.sh[65296]: Inserted into cr9
 
 ```
-If exist problems with network after the service was started we found the message:  
+If exist problems with the network, after the service was started, we found the message:  
 ```shell
 ● capture-dixell.service - Run the script to request data from Dixell XWEB300D
      Loaded: loaded (/etc/systemd/system/capture-dixell.service; disabled; vendor preset: enabled)

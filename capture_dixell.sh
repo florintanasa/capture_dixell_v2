@@ -84,7 +84,7 @@ while true ; do
                   # Replace value 0 with FALSE and value 1 with TRUE for better debug and to be sure not using value where is not necessary
                   case $VAL_2 in [1]) CODE_1=TRUE ;; [0]) CODE_1=FALSE ;; esac
                   case $VAL_3 in [1]) CODE_2=TRUE ;; [0]) CODE_2=FALSE ;; esac
-                  # Define variables with numbers
+                  # Define numeric variables
                   PROBE_1=$VAL_4
                   PROBE_2=$VAL_5
                   PROBE_3=$VAL_6

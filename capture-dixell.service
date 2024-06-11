@@ -5,14 +5,15 @@
 # description
 Description=Run the script to request data from Dixell XWEB300D
 # start after network and postgresql start
-After=network.target postgresql.service
+#After=network.target postgresql.service
 # stop the service if network and postgresql services was stopped
-Requires=network.target postgresql.service
+#Requires=network.target postgresql.service
 
 [Service]
 # type of service
-Type=simple
-# remain active, so ii's necessary to stop before to start again
+#Type=simple
+Type=idle
+# remain active, so it's necessary to stop before to start again
 RemainAfterExit=yes
 # script of file started
 ExecStart=/usr/local/bin/capture_dixell.sh
